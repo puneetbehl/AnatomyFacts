@@ -39,15 +39,14 @@ grails.project.dependency.resolution = {
 
     plugins {
         runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.0"
-        runtime ":resources:1.2.RC2"
-        compile ":twitter-bootstrap:2.1.1"
-        compile ":fields:1.3"
         compile ":console:1.2"
         compile ":codenarc:0.17"
         compile ":faker:0.6"
         test ":code-coverage:1.2.5"
         test ":spock:0.6"
+
+//        runtime ":jquery:1.8.0"
+//        runtime ":resources:1.2.RC2"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
