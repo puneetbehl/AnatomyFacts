@@ -1,122 +1,266 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
+<html lang="en">
+<head>
+    <meta name="layout" content="main"/>
+    <title>Anatomy Facts</title>
+    <style type="text/css">
+    body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
 
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
+    .sidebar-nav {
+        padding: 9px 0;
+    }
+    </style>
+</head>
 
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-            
-			#status li {
-				line-height: 1.3;
-			}
+<body>
+<g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name:'app.name'))}"/>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">${appName}</a>
 
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
+            <div class="nav-collapse collapse">
+                %{-- <p class="navbar-text pull-right">
+                    Logged in as <a href="#" class="navbar-link">${session.email}</a>
+                </p>--}%
+                <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#controllers">
+                            Controllers
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="controllersMenu">
+                            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
+                                <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+                            </g:each>
+                        </ul>
+                    </li>
+                </ul>
 
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
+                <form action="#" class="form-inline navbar-form pull-right">
+                    <div class="input-prepend">
+                        <span class="add-on">@</span><input name="email" class="span2 input-small" id="prependedInput" size="16" type="text" placeholder="Username">
+                    </div>
+                    <input name="password" type="password" class="input-small" placeholder="Password">
+                    <button type="submit" class="btn btn-inverse">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Installed Plugins</li>
+                    <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
+                        <li>${plugin.name} - ${plugin.version}</li>
+                    </g:each>
+                    <li class="nav-header">Application Status</li>
+                    <li>App version: <g:meta name="app.version"/></li>
+                    <li>Grails version: <g:meta name="app.grails.version"/></li>
+                    <li>Groovy version: ${org.codehaus.groovy.runtime.InvokerHelper.getVersion()}</li>
+                    <li>JVM version: ${System.getProperty('java.version')}</li>
+                    <li>ReloadiCompany 2012ng active: ${grails.util.Environment.reloadingAgentEnabled}</li>
+                    <li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
+                    <li>Domains: ${grailsApplication.domainClasses.size()}</li>
+                    <li>Services: ${grailsApplication.serviceClasses.size()}</li>
+                    <li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
+                </ul>
 
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
+            </div>
+        </div>
 
-			#controller-list ul {
-				list-style-position: inside;
-			}
+        <div class="span9">
+            <div class="hero-unit">
+                <h1>Welcome to ${appName}</h1>
 
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
+                <p>Congratulations, you have successfully started ${appName} application.</p>
 
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
+            </div>
+        </div>
+    </div>
+    <hr>
 
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
-			<h1>Application Status</h1>
-			<ul>
-				<li>App version: <g:meta name="app.version"/></li>
-				<li>Grails version: <g:meta name="app.grails.version"/></li>
-				<li>Groovy version: ${org.codehaus.groovy.runtime.InvokerHelper.getVersion()}</li>
-				<li>JVM version: ${System.getProperty('java.version')}</li>
-				<li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
-				<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-				<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-				<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-				<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-			</ul>
-			<h1>Installed Plugins</h1>
-			<ul>
-				<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-					<li>${plugin.name} - ${plugin.version}</li>
-				</g:each>
-			</ul>
-		</div>
-		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
-
-			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
-				</ul>
-			</div>
-		</div>
-	</body>
+    <footer>
+        <p>&copy; Intelligrape Software Ltd.</p>
+    </footer>
+</div>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%{--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="layout" content="main"/>
+    <title>Anatomy Facts</title>
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Anatomy Facts</a>
+
+            <div class="nav-collapse collapse">
+                <p class="navbar-text pull-right">
+                    Logged in as <a href="#" class="navbar-link">Username</a>
+                </p>
+                <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="well sidebar-nav">
+
+                <ul>
+                    <li class="nav-header">Installed Plugins</li>
+                    <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
+                        <li>${plugin.name} - ${plugin.version}</li>
+                    </g:each>
+                    <li class="nav-header">Application Status</li>
+                    <li>App version: <g:meta name="app.version"/></li>
+                    <li>Grails version: <g:meta name="app.grails.version"/></li>
+                    <li>Groovy version: ${org.codehaus.groovy.runtime.InvokerHelper.getVersion()}</li>
+                    <li>JVM version: ${System.getProperty('java.version')}</li>
+                    <li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
+                    <li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
+                    <li>Domains: ${grailsApplication.domainClasses.size()}</li>
+                    <li>Services: ${grailsApplication.serviceClasses.size()}</li>
+                    <li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
+                    <li class="nav-header">Available Controllers</li>
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
+                        <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
+                    </g:each>
+                </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span8">
+            <div class="hero-unit">
+                <h1>Welcome to Anatomy Facts</h1>
+
+                <p>Congratulations, you have successfully started Anatomy Fact application</p>
+
+                <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span4">
+                    <h2>Heading</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h2>Heading</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h2>Heading</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid">
+                <div class="span4">
+                    <h2>Heading</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h2>Heading</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div><!--/span-->
+                <div class="span4">
+                    <h2>Heading</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div><!--/span-->
+            </div><!--/row-->
+        </div><!--/span-->
+    </div><!--/row-->
+    <hr>
+    <footer>
+        <p>&copy; Intelligrape Software Ltd. 2008</p>
+    </footer>
+</div><!--/.fluid-container-->
+</body>
+</html>
+--}%

@@ -8,5 +8,7 @@ class Tip {
 
     static belongsTo = [category: Category]
     static constraints = {
+        content(maxSize: 200, nullable: false, blank: false)
+        category(nullable: false)
     }
 }

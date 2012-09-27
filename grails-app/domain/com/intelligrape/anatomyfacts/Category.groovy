@@ -8,6 +8,7 @@ class Category {
 
     static hasMany = [questions: Question, tips: Tip]
     static constraints = {
+        name(size: 1..25, nullable: false, blank: false)
     }
 
     @Override

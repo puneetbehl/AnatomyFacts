@@ -11,6 +11,8 @@ abstract class Question {
     static hasMany = [options: Option]
 
     static constraints = {
+        content(nullable: false, blank: false, size: 1..140)
+        category(nullable: false)
     }
 
     @Override
