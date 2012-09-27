@@ -16,7 +16,7 @@ class ${className}Controller {
     def create(Long id) {
         def ${propertyName} = id ? ${className}.get(id) : new ${className}(params)
         if (!${propertyName}) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
             redirect(action: "list")
         }else{
             [${propertyName}: ${propertyName}]
@@ -49,9 +49,9 @@ class ${className}Controller {
         }
 
         if(id){
-            flash.message = message(code: 'default.updated.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
+            flash.success = message(code: 'default.updated.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
         }else{
-            flash.message = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
+            flash.success = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
         }
         redirect(action: "show", id: ${propertyName}.id)
     }
@@ -59,7 +59,7 @@ class ${className}Controller {
     def show(Long id) {
         def ${propertyName} = ${className}.get(id)
         if (!${propertyName}) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
             redirect(action: "list")
             return
         }
@@ -70,18 +70,18 @@ class ${className}Controller {
     def delete(Long id) {
         def ${propertyName} = ${className}.get(id)
         if (!${propertyName}) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
+            flash.error = message(code: 'default.not.found.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
             redirect(action: "list")
             return
         }
 
         try {
             ${propertyName}.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
+            flash.success = message(code: 'default.deleted.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
+            flash.error = message(code: 'default.not.deleted.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), id])
             redirect(action: "show", id: id)
         }
     }

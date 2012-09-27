@@ -7,6 +7,17 @@ class ApplicationFilters {
             before = {
                 log.info "${params}"
             }
+
+            after = {
+                log.info "Flash -: ${flash}"
+            }
         }
+        consoleImports(controller: 'console', action: '*') {
+            before = {
+                String importStatements = """import com.intelligrape.anatomyfacts.*"""
+                session['_grails_console_last_code_'] = session['_grails_console_last_code_'] ?: importStatements
+            }
+        }
+
     }
 }

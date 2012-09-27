@@ -7,3 +7,7 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+$(document).ready(function() {
+    $('.pagination').children().wrapAll('<ul>')
+    $('.pagination ul').children().wrap('<li>')
+})

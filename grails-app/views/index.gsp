@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name="layout" content="main"/>
-    <title> Index </title>
+    <title>Index</title>
     <style type="text/css">
     body {
         padding-top: 60px;
@@ -16,49 +16,8 @@
 </head>
 
 <body>
-<g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name:'app.name'))}" scope="page"/>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="/">${appName}</a>
+<g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name: 'app.name'))}" scope="page"/>
 
-            <div class="nav-collapse collapse">
-                %{-- <p class="navbar-text pull-right">
-                    Logged in as <a href="#" class="navbar-link">${session.email}</a>
-                </p>--}%
-                <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#controllers">
-                            Controllers
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="controllersMenu">
-                            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
-                                <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
-                            </g:each>
-                        </ul>
-                    </li>
-                </ul>
-
-                <form action="#" class="form-inline navbar-form pull-right">
-                    <div class="input-prepend">
-                        <span class="add-on">@</span><input name="email" class="span2 input-small" id="prependedInput" size="16" type="text" placeholder="Username">
-                    </div>
-                    <input name="password" type="password" class="input-small" placeholder="Password">
-                    <button type="submit" class="btn btn-inverse">Sign in</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid">
     <div class="row-fluid">
         <div class="span3">
             <div class="well sidebar-nav">
@@ -91,11 +50,6 @@
             </div>
         </div>
     </div>
-    <hr>
 
-    <footer>
-        <p>&copy; Intelligrape Software Ltd.</p>
-    </footer>
-</div>
 </body>
 </html>
