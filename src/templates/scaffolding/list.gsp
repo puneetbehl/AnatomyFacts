@@ -13,11 +13,11 @@
         <div class="navbar-inner">
             <a class="brand" href="#"><g:message code="default.list.label" args="[entityName]"/></a>
             <ul class="nav pull-right">
-                <li><g:link action="create"><g:message code="default.new.label" args="[entityName]"/></g:link></li>
+                <li><g:link action="create"><i class="icon-plus-sign"></i>&nbsp;<g:message code="default.new.label" args="[entityName]"/></g:link></li>
             </ul>
         </div>
     </div>
-    <table class="table table-bordered table-striped table-hover table-condensed">
+    <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <% excludedProps = Event.allEvents.toList() << 'id' << 'version'

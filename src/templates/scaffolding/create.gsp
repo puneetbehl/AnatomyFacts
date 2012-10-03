@@ -8,38 +8,39 @@
 	</head>
 	<body>
     <g:hasErrors bean="\${${propertyName}}">
-        <ul class="errors" role="alert">
-            <g:eachError bean="\${${propertyName}}" var="error">
-                <li <g:if test="\${error in org.springframework.validation.FieldError}">data-field-id="\${error.field}"</g:if>><g:message error="\${error}"/></li>
-            </g:eachError>
-        </ul>
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <ul class="unstyled">
+                <g:eachError bean="\${${propertyName}}" var="error">
+                    <li><g:message error="\${error}"/></li>
+                </g:eachError>
+            </ul>
+        </div>
     </g:hasErrors>
     <div class="navbar">
         <div class="navbar-inner">
             <a class="brand" href="#"><g:message code="default.create.label" args="[entityName]" /></a>
             <ul class="nav pull-right">
-                <li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="list" action="list"><i class="icon-list"></i>&nbsp;<g:message code="default.list.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
     </div>
 
-			<g:form action="save" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+	<g:form class="form-horizontal" action="save" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+        <g:if test="\${${propertyName}?.id}">
+              <g:hiddenField name="id" value="\${${propertyName}?.id}" />
+              <g:hiddenField name="version" value="\${${propertyName}?.version}" />
+        </g:if>
+	    <g:render template="form"/>
+		<div class="control-group">
                 <g:if test="\${${propertyName}?.id}">
-                    <g:hiddenField name="id" value="\${${propertyName}?.id}" />
-                    <g:hiddenField name="version" value="\${${propertyName}?.version}" />
-                </g:if>
-                <fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-                    <g:if test="\${${propertyName}?.id}">
-                        <g:actionSubmit class="save" action="save" value="\${message(code: 'default.button.update.label', default: 'Update')}" />
-                        <g:actionSubmit class="delete" action="delete" value="\${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                    </g:if><g:else>
-                        <g:submitButton name="create" class="save" value="\${message(code: 'default.button.create.label', default: 'Create')}" />
-                    </g:else>
-				</fieldset>
-			</g:form>
-		</div>
-	</body>
+                    <g:actionSubmit class="btn btn-info" action="save" value="\${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:actionSubmit class="btn btn-danger" action="delete" value="\${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate=""
+                                    onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                </g:if><g:else>
+                    <g:submitButton name="create" class="btn btn-info" value="\${message(code: 'default.button.create.label', default: 'Create')}" />
+                </g:else>
+	    </div>
+	</g:form>
+</body>
 </html>
