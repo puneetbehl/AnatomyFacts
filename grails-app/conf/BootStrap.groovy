@@ -3,7 +3,9 @@ class BootStrap {
     def bootstrapService
 
     def init = { servletContext ->
-        bootstrapService.createCategories()
+        bootstrapService.createQuizQuestionsAndOptionsAndCategories()
+        bootstrapService.createTips()
+        bootstrapService.createTestQuestionAndOptions()
     }
     def destroy = {
     }
