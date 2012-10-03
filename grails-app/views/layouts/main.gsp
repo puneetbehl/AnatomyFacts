@@ -10,12 +10,12 @@
     <g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name: 'app.name'))}" scope="page"/>
     <title>${appName} | <g:layoutTitle/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/custom.css"/>
-    <link rel="stylesheet" href="/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/css/bootstrap-responsive.css"/>
-    <script type="text/javascript" src="/js/jquery-1.8.0.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/application.js"></script>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}"/>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-1.8.0.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'application.js')}"></script>
     <g:layoutHead/>
 </head>
 
@@ -62,22 +62,38 @@
 </div>
 
 <div class="container-fluid">
-    <g:if test="${flash.error}">
-        <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            ${flash.error}
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Controllers</li>
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">
+                        <li><g:link controller="${c.logicalPropertyName}">${c.name}</g:link></li>
+                    </g:each>
+                </ul>
+            </div>
         </div>
-    </g:if>
-    <g:if test="${flash.success}">
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            ${flash.success}
+
+        <div class="span10">
+            <g:if test="${flash.error}">
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    ${flash.error}
+                </div>
+            </g:if>
+            <g:if test="${flash.success}">
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    ${flash.success}
+                </div>
+            </g:if>
+            <g:layoutBody/>
         </div>
-    </g:if>
-    <g:layoutBody/>
-    <hr>
+    </div>
     <footer>
-        <p>&copy; Intelligrape Software Ltd.</p>
+        <div class="navbar navbar-fixed-bottom">
+            <p>&copy;&nbsp;<a href="http://www.intelligrape.com">Intelligrape Software Ltd.</a></p>
+        </div>
     </footer>
 </div>
 
