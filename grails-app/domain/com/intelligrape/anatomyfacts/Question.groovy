@@ -10,6 +10,11 @@ abstract class Question {
     static belongsTo = [category: Category]
     static hasMany = [options: Option]
 
+    static mapping = {
+        content type: 'text'
+        description type:'text'
+    }
+
     static constraints = {
         content(nullable: false, blank: false, size: 1..140)
         category(nullable: false)

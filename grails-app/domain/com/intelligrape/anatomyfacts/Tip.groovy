@@ -7,6 +7,9 @@ class Tip {
     Date lastUpdated
 
     static belongsTo = [category: Category]
+    static mapping = {
+        content type: 'text'
+    }
     static constraints = {
         content(maxSize: 200, nullable: false, blank: false)
         category(nullable: false)
