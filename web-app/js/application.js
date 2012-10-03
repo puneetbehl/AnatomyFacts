@@ -10,4 +10,10 @@ if (typeof jQuery !== 'undefined') {
 $(document).ready(function() {
     $('.pagination').children().wrapAll('<ul>')
     $('.pagination ul').children().wrap('<li>')
+    $('input[name=tags]').typeahead({
+        source: ['one', 'two', 'three'],
+        items: 3,
+        minLength:2
+
+    });
 })
