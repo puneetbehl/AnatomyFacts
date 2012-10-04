@@ -25,22 +25,22 @@
         <td>
             <div class="control-group">
                 <input name="options[0].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[0].isCorrect"/>
+                <g:checkBox name="options[0].isCorrect" class="option"/>
             </div>
 
             <div class="control-group">
                 <input name="options[1].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[1].isCorrect" />
+                <g:checkBox name="options[1].isCorrect" class="option"/>
             </div>
 
             <div class="control-group">
                 <input name="options[2].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[2].isCorrect"/>
+                <g:checkBox name="options[2].isCorrect" class="option"/>
             </div>
 
             <div class="control-group">
                 <input name="options[3].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[3].isCorrect"/>
+                <g:checkBox name="options[3].isCorrect" class="option"/>
             </div>
 
             <div>
