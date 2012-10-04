@@ -12,7 +12,7 @@
             </label>
         </td>
         <td>
-            <g:textField class="input-xxlarge" name="content" maxlength="140" required="" value="${quizQuestion?.content}"/>
+            <g:textField class="input-xxlarge" name="content" maxlength="140" required="" value="${quizQuestion?.content}" placeholder="Enter your question content here"/>
         </td>
     </tr>
     <tr>
@@ -23,33 +23,29 @@
             </label>
         </td>
         <td>
-            <div class="row-fluid">
-                <div class="span4">
-                    <input type="text" placeholder="Option">
-                    <input name="isCorrect" type="radio">
-                </div>
-
-                <div class="span4">
-                    <input type="text" placeholder="Option">
-                    <input name="isCorrect" type="radio">
-                </div>
+            <div class="control-group">
+                <input name="options[0].value" type="text" class="inline" placeholder="Option">
+                <g:checkBox name="options[0].isCorrect"/>
             </div>
 
-            <div class="row-fluid">
-                <div class="span4">
-                    <input type="text" placeholder="Option">
-                    <input name="isCorrect" type="radio">
-                </div>
-
-                <div class="span4">
-                    <input type="text" placeholder="Option">
-                    <input name="isCorrect" type="radio">
-                </div>
+            <div class="control-group">
+                <input name="options[1].value" type="text" class="inline" placeholder="Option">
+                <g:checkBox name="options[1].isCorrect" />
             </div>
 
+            <div class="control-group">
+                <input name="options[2].value" type="text" class="inline" placeholder="Option">
+                <g:checkBox name="options[2].isCorrect"/>
+            </div>
 
-            <i>* Mark one as answer</i>
+            <div class="control-group">
+                <input name="options[3].value" type="text" class="inline" placeholder="Option">
+                <g:checkBox name="options[3].isCorrect"/>
+            </div>
 
+            <div>
+                <i>* Mark one as answer</i>
+            </div>
         </td>
     </tr>
     <tr>
@@ -59,7 +55,7 @@
             </label>
         </td>
         <td>
-            <g:textArea class="input-xxlarge" cols="15" rows="7" name="description" value="${quizQuestion?.description}"/>
+            <g:textArea class="input-xxlarge" cols="15" rows="7" name="description" value="${quizQuestion?.description}" placeholder="Describe your answer..."/>
         </td>
     </tr>
     <tr>
