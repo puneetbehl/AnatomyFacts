@@ -12,8 +12,9 @@ abstract class Question {
     static hasMany = [options: Option, tags: Tag]
 
     static mapping = {
+        sort(id: 'desc')
         content type: 'text'
-        description type:'text'
+        description type: 'text'
     }
 
     static constraints = {
