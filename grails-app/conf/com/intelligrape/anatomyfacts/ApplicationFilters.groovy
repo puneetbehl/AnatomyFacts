@@ -7,10 +7,6 @@ class ApplicationFilters {
             before = {
                 log.info "${params}"
             }
-
-            after = {
-                log.info "Flash -: ${flash}"
-            }
         }
         consoleImports(controller: 'console', action: '*') {
             before = {
