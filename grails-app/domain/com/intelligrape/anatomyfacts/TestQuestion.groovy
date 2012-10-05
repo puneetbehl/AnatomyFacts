@@ -1,9 +1,10 @@
 package com.intelligrape.anatomyfacts
 
 class TestQuestion extends Question {
+    boolean answer
 
     static constraints = {
-        options(minSize: 2, maxSize: 2, nullable: false)
+
     }
 
     @Override

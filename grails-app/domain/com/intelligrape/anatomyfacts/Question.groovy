@@ -3,13 +3,12 @@ package com.intelligrape.anatomyfacts
 abstract class Question {
     String content
     String description
-    List<Option> options
     Date dateCreated
     Date lastUpdated
     List<Tag> tags
 
     static belongsTo = [category: Category]
-    static hasMany = [options: Option, tags: Tag]
+    static hasMany = [tags: Tag]
 
     static mapping = {
         sort(id: 'desc')
