@@ -19,7 +19,7 @@ abstract class Question {
     static constraints = {
         content(nullable: false, blank: false, size: 1..140)
         category(nullable: false)
-        tags(nullable: true, blank: true)
+        tags(nullable: true, blank: true, bindabble: false)
     }
 
     @Override

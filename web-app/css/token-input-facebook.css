@@ -1,0 +1,153 @@
+/* Example tokeninput style #2: Facebook style */
+ul.token-input-list-facebook {
+    overflow: hidden; 
+    height: auto !important;
+    height: 1%;
+   /*width: 400px;*/
+    /*border: 1px solid #8496ba;*/
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    min-height: 1px;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+ul.token-input-list-facebook {
+    list-style-type: none;
+}
+
+ul.token-input-list-facebook li input {
+    padding: 3px 0 3px 3px;
+    background-color: white;
+    float: left;
+    margin:0;
+    border: 0;
+    width: 80%;
+}
+
+li.token-input-token-facebook {
+    overflow: hidden;
+    height: auto !important;
+    height: 1%;
+    margin: 3px;
+    padding: 1px 3px;
+    background-color: #eff2f7;
+    color: #000;
+    cursor: default;
+    border: 1px solid #ccd5e4;
+    font-size: 13px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    clear: both;
+}
+
+li.token-input-token-facebook p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token-facebook span {
+    color: #a6b3cf;
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+li.token-input-selected-token-facebook {
+    background-color: #5670a6;
+    border: 1px solid #3b5998;
+    color: #fff;
+}
+
+li.token-input-input-token-facebook {
+    border: 1px solid #ddd;
+    border-radius: 3px ;
+    width: auto;
+    height: 23px;
+}
+/*li.token-input-input-token-facebook {*/
+    /*background:#eff2f7;*/
+/*}*/
+li.token-input-input-token-facebook span{
+    background:#eff2f7;
+    height:23px;
+    width: 9px;
+    line-height: 23px;
+    float: right;
+
+}
+li.token-input-selected-token-facebook span{
+   color:#fff;
+}
+
+div.token-input-dropdown-facebook {
+    position: absolute;
+    width: 175px;
+    background-color: #fff;
+    overflow-x:hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    font-size: 11px;
+    font-family: Verdana;
+    height:80px;
+    z-index: 1;
+    margin-top: -14px;
+}
+
+div.token-input-dropdown-facebook p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+}
+
+div.token-input-dropdown-facebook ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown-facebook ul li {
+    background-color: #fff;
+    padding: 3px;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item2-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li em {
+    font-weight: bold;
+    font-style: none;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-selected-dropdown-item-facebook {
+    color: #333;
+}
+
+
+
+li.token-chan-tweaks1 {
+    border: 1px solid rgb(204, 213, 228);
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: medium;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-bor-width:auto;
+    background:#eff2f7;
+}
+
+

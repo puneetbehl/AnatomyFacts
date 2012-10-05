@@ -20,6 +20,9 @@ $(document).ready(function () {
     $('.option').bind('click', function () {
         $(this).parent().siblings().children('.option').attr('checked', false)
     });
-
-
 });
+
+
+var urls = {
+    tags_autocomplete_url:""
+}
