@@ -85,7 +85,7 @@
             </label>
         </td>
         <td>
-            <g:textField name="tags" class="tags" value="${quizQuestion?.tags ? quizQuestion?.tags?.join(',') : ''}"/>
+            <g:textField name="tags" class="tags" value="${quizQuestion?.tags ? quizQuestion?.tags?.join(',') : ''}" onkeypress="getSimilarTagsFromDB()"/>
         </td>
     </tr>
 </table>

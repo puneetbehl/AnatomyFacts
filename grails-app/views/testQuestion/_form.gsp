@@ -57,7 +57,7 @@
             </label>
         </td>
         <td>
-            <g:textField name="tags" value="${testQuestion?.tags ? testQuestion?.tags?.join(',') : ''}" class="tags many-to-many"/>
+            <g:textField name="tags" value="${testQuestion?.tags ? testQuestion?.tags?.join(',') : ''}" class="tags many-to-many" onkeypress="getSimilarTagsFromDB()"/>
         </td>
     </tr>
 </table>
