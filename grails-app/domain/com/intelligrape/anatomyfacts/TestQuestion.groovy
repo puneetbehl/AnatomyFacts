@@ -4,7 +4,7 @@ class TestQuestion extends Question {
     boolean answer
 
     static constraints = {
-
+        tags(bindable: false)
     }
 
     @Override
