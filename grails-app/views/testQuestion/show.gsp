@@ -10,10 +10,10 @@
 <body>
     <div class="navbar">
         <div class="navbar-inner">
-            <a class="brand" href="#"><g:message code="default.show.label" args="[entityName]" /></a>
+            <a class="brand" href="#">Test Question</a>
             <ul class="nav pull-right">
-                <li><g:link action="list"><i class="icon-list"></i>&nbsp;<g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link action="create"><i class="icon-plus-sign"></i>&nbsp;<g:message code="default.new.label" args="[entityName]" /></g:link></li>
+                <li><g:link action="list"><i class="icon-list"></i>&nbsp;List</g:link></li>
+                <li><g:link action="create"><i class="icon-plus-sign"></i>&nbsp;New</g:link></li>
             </ul>
         </div>
     </div>

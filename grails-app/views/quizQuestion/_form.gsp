@@ -58,19 +58,26 @@
             <g:textArea class="input-xxlarge" cols="15" rows="7" name="description" value="${quizQuestion?.description}" placeholder="Describe your answer..."/>
         </td>
     </tr>
-    <tr>
-        <td>
-            <label for="category">
-                Category
-                <span class="required-indicator">*</span>
-            </label>
-        </td>
-        <td>
-            <g:select id="category" name="category.id" from="${com.intelligrape.anatomyfacts.Category.list()}" optionKey="id" required="" value="${quizQuestion?.category?.id}"
-                      class="input-xxlarge many-to-one"/>
-        </td>
+    ${fromContext}
+    <g:if test="${fromContext}">
+        <g:hiddenField name="fromContext" value="${fromContext}"/>
+        <g:hiddenField name="category.id" value="${category?.id}"/>
+    </g:if>
+    <g:else>
+        <tr>
+            <td>
+                <label for="category">
+                    Category
+                    <span class="required-indicator">*</span>
+                </label>
+            </td>
+            <td>
+                <g:select id="category" name="category.id" from="${com.intelligrape.anatomyfacts.Category.list()}" optionKey="id" required="" value="${quizQuestion?.category?.id}"
+                          class="input-xxlarge many-to-one"/>
+            </td>
 
-    </tr>
+        </tr>
+    </g:else>
     <tr>
         <td>
             <label for="tags">

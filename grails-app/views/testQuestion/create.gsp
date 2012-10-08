@@ -19,9 +19,9 @@
     </g:hasErrors>
     <div class="navbar">
         <div class="navbar-inner">
-            <a class="brand" href="#"><g:message code="default.create.label" args="[entityName]" /></a>
+            <a class="brand" href="#">Test Question</a>
             <ul class="nav pull-right">
-                <li><g:link class="list" action="list"><i class="icon-list"></i>&nbsp;<g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li><g:link class="list" action="list"><i class="icon-list"></i>&nbsp;List</g:link></li>
             </ul>
         </div>
     </div>

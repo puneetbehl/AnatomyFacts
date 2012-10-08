@@ -10,7 +10,7 @@
 <body>
 <div class="navbar">
     <div class="navbar-inner">
-        <a class="brand" href="#">Show Quiz Question</a>
+        <a class="brand" href="#">Quiz Question</a>
         <ul class="nav pull-right">
             <li><g:link action="list"><i class="icon-list"></i>&nbsp;List</g:link></li>
             <li><g:link action="create"><i class="icon-plus-sign"></i>&nbsp;New</g:link></li>

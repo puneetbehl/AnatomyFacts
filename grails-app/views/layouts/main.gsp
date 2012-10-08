@@ -10,16 +10,15 @@
     <g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name: 'app.name'))}" scope="page"/>
     <title>${appName} | <g:layoutTitle/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.tagsinput.css')}">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}"/>
 
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-1.8.0.js')}"></script>
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-ui.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.tagsinput.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-ui.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'application.js')}"></script>
     <g:layoutHead/>
 </head>
@@ -71,7 +70,7 @@
 </footer>
 <script type="text/javascript">
     var urls = {
-        tags_autocomplete_url:"${createLink(controller: 'testQuestion', action: 'tags')}"
+        tags_autocomplete_url:"${createLink(controller: 'tag', action: 'tags')}"
     }
 </script>
 </body>

@@ -42,6 +42,8 @@ grails.project.dependency.resolution = {
         compile ":console:1.2"
         compile ":codenarc:0.17"
         compile ":faker:0.6"
+        compile ':cache:1.0.0'
+        compile ":spring-security-core:1.2.7.3"
         test ":code-coverage:1.2.5"
         test ":spock:0.6"
 
@@ -54,6 +56,5 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.4"
 
         build ":tomcat:$grailsVersion"
-        compile ':cache:1.0.0'
     }
 }
