@@ -10,17 +10,21 @@
     <g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name: 'app.name'))}" scope="page"/>
     <title>${appName} | <g:layoutTitle/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.tagsinput.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}"/>
+
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-1.8.0.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-ui.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.js')}"></script>
+    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.tagsinput.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'application.js')}"></script>
     <g:layoutHead/>
 </head>
 
 <body>
-
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -30,6 +34,7 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand" href="/">${appName}</a>
+
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li><g:link controller="category" action="list">Category</g:link></li>
@@ -41,6 +46,7 @@
         </div>
     </div>
 </div>
+
 <div class="container-fluid">
     <g:if test="${flash.error}">
         <div class="alert alert-error">
@@ -63,5 +69,10 @@
         <a href="http://www.intelligrape.com">&copy;&nbsp;Intelligrape Software Ltd.</a>
     </div>
 </footer>
+<script type="text/javascript">
+    var urls = {
+        tags_autocomplete_url:"${createLink(controller: 'testQuestion', action: 'tags')}"
+    }
+</script>
 </body>
 </html>
