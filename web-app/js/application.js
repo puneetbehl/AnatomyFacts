@@ -19,9 +19,20 @@ $(document).ready(function () {
     });
 
     $('.tags').tagsInput({
-        'width':'530px',
-        'autocomplete_url':urls.tags_autocomplete_url
+        'width':'530px'
     });
     $('.tip_content').css('width', '530px')
-    $('.tip_form').css('margin','0px 0px')
+    $('.tip_form').css('margin', '0px 0px')
 });
+function getSimilarTagsFromDB() {
+    $.ajax({
+        url:urls.tags_autocomplete_url,
+        data:$('tags').val(),
+        success:function (result) {
+            alert(result)
+            $('.tags').tagsInput({
+                autocomplete_url:result
+            })
+        }
+    })
+}
