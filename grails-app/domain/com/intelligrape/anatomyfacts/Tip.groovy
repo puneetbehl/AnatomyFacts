@@ -9,6 +9,7 @@ class Tip {
     static belongsTo = [category: Category]
     static mapping = {
         content type: 'text'
+        sort(id: 'desc')
     }
     static constraints = {
         content(maxSize: 200, nullable: false, blank: false)
