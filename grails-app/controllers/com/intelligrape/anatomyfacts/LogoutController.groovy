@@ -1,3 +1,5 @@
+package com.intelligrape.anatomyfacts
+
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class LogoutController {
