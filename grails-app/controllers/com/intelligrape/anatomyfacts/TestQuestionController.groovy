@@ -1,6 +1,7 @@
 package com.intelligrape.anatomyfacts
 
-import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
+import vo.TagVO
 
 class TestQuestionController {
 
@@ -19,23 +20,37 @@ class TestQuestionController {
                 testQuestion.errors.rejectValue("version", "default.optimistic.locking.failure",
                         [message(code: 'testQuestion.label', default: 'TestQuestion')] as Object[],
                         "Another user has updated this TestQuestion while you were editing")
-            render(view: "create", model: [testQuestion: testQuestion])
-            return
+                render(view: "create", model: [testQuestion: testQuestion])
+                return
             }
         }
-
-        testQuestion.properties = params
+        collectTagsFromParams(testQuestion)
 
         if (!testQuestion.save(flush: true)) {
             render(view: "create", model: [testQuestion: testQuestion])
             return
         }
 
-        if(id){
-            flash.success = message(code: 'default.updated.message', args: [message(code: 'testQuestion.label', default: 'TestQuestion'), testQuestion.id])
-        }else{
-            flash.success = message(code: 'default.created.message', args: [message(code: 'testQuestion.label', default: 'TestQuestion'), testQuestion.id])
-        }
+        flash.success = id ? message(code: 'default.updated.message', args: [message(code: 'testQuestion.label', default: 'TestQuestion'), testQuestion.id]) :
+            message(code: 'default.created.message', args: [message(code: 'testQuestion.label', default: 'TestQuestion'), testQuestion.id])
         redirect(action: "show", id: testQuestion.id)
     }
+
+    def tags() {
+        List<Tag> tags = Tag.list()
+        List results = tags ? tags.collect {new TagVO(it.label)} : []
+        results.add(new TagVO(params.q))
+        results.unique {it.label}
+        render([["id": "Netta rufina", "label": "Red-crested Pochard", "value": "Red-crested Pochard"], ["id": "Sterna sandvicensis", "label": "Sandwich Tern", "value": "Sandwich Tern"]] as JSON)
+    }
+
+    private void collectTagsFromParams(TestQuestion testQuestion) {
+        testQuestion.tags = params?.tags ?
+            params?.tags?.split(',')?.collect { label->
+                Tag existingTag = Tag.findByLabel(label)
+                Tag tag = existingTag ? existingTag : new Tag(label: label)
+                return tag
+            } : []
+    }
+
 }
