@@ -7,19 +7,19 @@ if (typeof jQuery !== 'undefined') {
             });
     })(jQuery);
 }
+var urls = {
+    tags_autocomplete_url:""
+}
 $(document).ready(function () {
-    $('.pagination').children().wrapAll('<ul>')
-    $('.pagination ul').children().wrap('<li>')
-    $('input[name=tags]').typeahead({
-        source:['one', 'two', 'three'],
-        items:3,
-        minLength:2
-
-    });
+    $('.pagination').children().wrapAll('<ul>');
+    $('.pagination ul').children().wrap('<li>');
 
     $('.option').bind('click', function () {
         $(this).parent().siblings().children('.option').attr('checked', false)
     });
 
-
+    $('.tags').tagsInput({
+        'width':'530px',
+        autocomplete_url:urls.tags_autocomplete_url
+    })
 });
