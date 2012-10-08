@@ -37,6 +37,11 @@ class BootstrapService {
     def createTestQuestionAndOptions() {
         List<Category> categories = Category.list()
         Option option
+        List<Tag> tags = []
+        5.times {
+            Tag tag = new Tag(label: fakerService.name())
+            tags << tag
+        }
         for (category in categories) {
             List<Option> options = []
             option = new Option(value: fakerService.word().replace(',', ''), isCorrect: true)
@@ -49,7 +54,8 @@ class BootstrapService {
                     content: fakerService.sentence(8),
                     description: fakerService.paragraph(10),
                     options: options,
-                    category: category
+                    category: category,
+                    tags: tags
             ).save(failOnError: true)
         }
     }
