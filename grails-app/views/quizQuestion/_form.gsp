@@ -17,30 +17,30 @@
     </tr>
     <tr>
         <td>
-            <label for="options">
-                <g:message code="quizQuestion.options.label" default="Options"/>
+            <label>
+                Options
                 <span class="required-indicator">*</span>
             </label>
         </td>
         <td>
             <div class="control-group">
-                <input name="options[0].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[0].isCorrect" class="option"/>
+                <input name="options[0].value" type="text" class="inline" placeholder="Option" value="${quizQuestion?.id ? quizQuestion?.options[0]?.value : ''}">
+                <g:checkBox name="options[0].isCorrect" class="option" checked="${quizQuestion?.id ? quizQuestion?.options[0]?.isCorrect : false}"/>
             </div>
 
             <div class="control-group">
-                <input name="options[1].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[1].isCorrect" class="option"/>
+                <input name="options[1].value" type="text" class="inline" placeholder="Option" value="${quizQuestion?.id ? quizQuestion?.options[1]?.value : ''}">
+                <g:checkBox name="options[1].isCorrect" class="option" checked="${quizQuestion?.id ? quizQuestion?.options[1]?.isCorrect : false}"/>
             </div>
 
             <div class="control-group">
-                <input name="options[2].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[2].isCorrect" class="option"/>
+                <input name="options[2].value" type="text" class="inline" placeholder="Option" value="${quizQuestion?.id ? quizQuestion?.options[2]?.value : ''}">
+                <g:checkBox name="options[2].isCorrect" class="option" checked="${quizQuestion?.id ? quizQuestion?.options[2]?.isCorrect : false}"/>
             </div>
 
             <div class="control-group">
-                <input name="options[3].value" type="text" class="inline" placeholder="Option">
-                <g:checkBox name="options[3].isCorrect" class="option"/>
+                <input name="options[3].value" type="text" class="inline" placeholder="Option" value="${quizQuestion?.id ? quizQuestion?.options[3]?.value : ''}">
+                <g:checkBox name="options[3].isCorrect" class="option" checked="${quizQuestion?.id ? quizQuestion?.options[3]?.isCorrect : false}"/>
             </div>
 
             <div>
@@ -61,13 +61,13 @@
     <tr>
         <td>
             <label for="category">
-                <g:message code="quizQuestion.category.label" default="Category"/>
+                Category
                 <span class="required-indicator">*</span>
             </label>
         </td>
         <td>
             <g:select id="category" name="category.id" from="${com.intelligrape.anatomyfacts.Category.list()}" optionKey="id" required="" value="${quizQuestion?.category?.id}"
-                      class="many-to-one"/>
+                      class="input-xxlarge many-to-one"/>
         </td>
 
     </tr>
@@ -78,10 +78,8 @@
             </label>
         </td>
         <td>
-            <input type="text" class="input-xxlarge" data-provide="typeahead" name="tags">
+            <g:textField name="tags" class="tags" value="${quizQuestion?.tags ? quizQuestion?.tags?.join(',') : ''}"/>
         </td>
-
     </tr>
-
 </table>
 
