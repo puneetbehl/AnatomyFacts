@@ -92,3 +92,11 @@ log4j = {
 
     info  'grails.app'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.intelligrape.anatomyfacts.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.intelligrape.anatomyfacts.UserRole'
+grails.plugins.springsecurity.authority.className = 'com.intelligrape.anatomyfacts.Role'
+grails.plugins.springsecurity.rememberMe.persistent = true
+grails.plugins.springsecurity.rememberMe.persistent = true
+grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.intelligrape.anatomyfacts.PersistentLogin'
