@@ -5,7 +5,7 @@ class Option {
     boolean isCorrect
 
     static constraints = {
-        value(nullable: false, blank: false, size: 1..15)
+        value(nullable: false, blank: false, size: 1..30)
     }
 
     static mapping = {
