@@ -1,8 +1,5 @@
 package com.intelligrape.anatomyfacts
 
-import grails.converters.JSON
-import javax.servlet.jsp.tagext.TagSupport
-
 class TestQuestionController {
 
     def scaffold = true
@@ -34,11 +31,6 @@ class TestQuestionController {
         flash.success = id ? message(code: 'default.updated.message', args: [message(code: 'testQuestion.label', default: 'TestQuestion'), testQuestion.id]) :
             message(code: 'default.created.message', args: [message(code: 'testQuestion.label', default: 'TestQuestion'), testQuestion.id])
         redirect(action: "create")
-    }
-
-    def tags() {
-        List<Tag> tags = Tag.list()
-        render(tags as JSON)
     }
 
     private void collectTagsFromParams(TestQuestion testQuestion) {
