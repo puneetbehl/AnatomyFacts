@@ -4,7 +4,28 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class QuizQuestionController {
 
-    def scaffold = true
+    static allowedMethods = [save: "POST", delete: "POST"]
+
+    def index() {
+        redirect(action: "list", params: params)
+    }
+
+    def list(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        [quizQuestionList: QuizQuestion.list(params), quizQuestionTotal: QuizQuestion.count()]
+    }
+
+    def create(Long id) {
+        def quizQuestion = id ? QuizQuestion.get(id) : new QuizQuestion(params)
+        if (!quizQuestion) {
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), id])
+            redirect(action: "list")
+        } else {
+            [quizQuestion: quizQuestion]
+        }
+        if (params?.fromContext)
+            render view: "/quizQuestion/create", model: ['category.id': params?.category?.id, 'fromContext': params?.fromContext]
+    }
 
     def save(Long id, Long version) {
         def quizQuestion = id ? QuizQuestion.get(id) : new QuizQuestion(params)
@@ -36,7 +57,42 @@ class QuizQuestionController {
 
         flash.success = id ? message(code: 'default.updated.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), quizQuestion.id]) :
             message(code: 'default.created.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), quizQuestion.id])
-        redirect(action: "show", id: quizQuestion.id)
+        if (params?.fromContext) {
+            flash.success = "Question added successfully"
+        }
+        String action = params?.fromContext ? "show" : "create"
+        String controller = params?.fromContext ? "category" : "quizQuestion"
+        redirect(controller: controller, action: action)
+    }
+
+    def show(Long id) {
+        def quizQuestion = QuizQuestion.get(id)
+        if (!quizQuestion) {
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [quizQuestion: quizQuestion]
+    }
+
+    def delete(Long id) {
+        def quizQuestion = QuizQuestion.get(id)
+        if (!quizQuestion) {
+            flash.error = message(code: 'default.not.found.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), id])
+            redirect(action: "list")
+            return
+        }
+
+        try {
+            quizQuestion.delete(flush: true)
+            flash.success = message(code: 'default.deleted.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), id])
+            redirect(action: "list")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'quizQuestion.label', default: 'QuizQuestion'), id])
+            redirect(action: "show", id: id)
+        }
     }
 
     private void collectTagsFromParams(QuizQuestion quizQuestion) {
