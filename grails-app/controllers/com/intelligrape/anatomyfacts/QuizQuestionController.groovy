@@ -23,8 +23,7 @@ class QuizQuestionController {
         } else {
             [quizQuestion: quizQuestion]
         }
-        if (params?.fromContext)
-            render view: "/quizQuestion/create", model: ['category.id': params?.category?.id, 'fromContext': params?.fromContext]
+        render view: "/quizQuestion/create", model: ['category.id': params?.category?.id, 'fromContext': params?.fromContext, quizQuestion: quizQuestion]
     }
 
     def save(Long id, Long version) {

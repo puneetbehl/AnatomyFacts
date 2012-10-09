@@ -62,14 +62,14 @@ class BootstrapService {
 
     def createSaveAndAssignRoleToUser() {
 
-        User user = new User(username: "admin@ig.com", password: "admin@123", accountExpired: false, accountLocked: false, passwordExpired: false)
+        User user = new User(username: "admin@ig.com", password: "admin@123", accountExpired: false, accountLocked: false, passwordExpired: false, enabled: true)
         user.save(failOnError: true)
         Role role = new Role(authority: "admin")
         role.save(failOnError: true)
         UserRole userRole = new UserRole(user: user, role: role)
         userRole.save(failOnError: true,flush: true)
 
-        user = new User(username: "puneet@ig.com", password: "igdefault", accountExpired: false, accountLocked: false, passwordExpired: false)
+        user = new User(username: "puneet@ig.com", password: "igdefault", accountExpired: false, accountLocked: false, passwordExpired: false, enabled: true)
         user.save(failOnError: true)
         role = new Role(authority: "user")
         role.save(failOnError: true)

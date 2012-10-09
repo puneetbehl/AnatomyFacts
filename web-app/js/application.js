@@ -19,7 +19,9 @@ $(document).ready(function () {
     });
 
     $('.tags').tagsInput({
-        'width':'530px'
+        'width':'530px',
+        autocomplete_url:urls.tags_autocomplete_url
+
     });
     $('.tip_content').css('width', '530px')
     $('.tip_form').css('margin', '0px 0px')
@@ -29,7 +31,6 @@ function getSimilarTagsFromDB() {
         url:urls.tags_autocomplete_url,
         data:$('tags').val(),
         success:function (result) {
-            alert(result)
             $('.tags').tagsInput({
                 autocomplete_url:result
             })
