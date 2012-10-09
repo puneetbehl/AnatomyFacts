@@ -19,7 +19,7 @@
     </g:hasErrors>
     <div class="navbar">
         <div class="navbar-inner">
-            <a class="brand" href="#">Create Quiz Question</a>
+            <a class="brand" href="#">Quiz Question</a>
             <ul class="nav pull-right">
                 <li><g:link class="list" action="list"><i class="icon-list"></i>&nbsp;List</g:link></li>
             </ul>
