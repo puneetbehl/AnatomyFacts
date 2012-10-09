@@ -3,13 +3,9 @@ package com.intelligrape.anatomyfacts
 class ApplicationTagLib {
 
     static namespace = "af"
-    def ifLoggedIn = { attrs, body ->
-        if (session.email)
-            out << body()
-    }
 
-    def ifNotLoggeedIn = { attrs, body ->
-        if (!session.email)
-            out << body()
+    def categories = { attrs, body ->
+        List<Category> categories = Category.list()
+        out << render(template: '/quiz/categories', model: [categories: categories])
     }
 }
