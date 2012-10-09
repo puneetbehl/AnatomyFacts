@@ -36,15 +36,24 @@
             <a class="brand" href="/">${appName}</a>
 
             <div class="nav-collapse collapse">
-                <sec:ifLoggedIn><p class="navbar-text pull-right">
-                    Logged in as <a href="#" class="navbar-link"><sec:loggedInUserInfo field="username"/></a>
-                </p></sec:ifLoggedIn>
                 <ul class="nav">
                     <li><g:link controller="category" action="list">Category</g:link></li>
                     <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
                     <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
+                    <li><a href="#generateQuiz" data-toggle="modal">Quiz</a></li>
                     <li><g:link controller="tip" action="list">Tip</g:link></li>
                 </ul>
+                <sec:ifLoggedIn>
+                    <ul class="pull-right nav">
+                        <li>
+                            <p class="navbar-text pull-right" id="loginMessgae">
+                                Logged in as <sec:loggedInUserInfo field="username"/>
+                            </p>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li><g:link controller="logout">Logout</g:link></li>
+                    </ul>
+                </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
                     <g:set var="config" value="${SpringSecurityUtils.securityConfig}"/>
                     <form action='${request.contextPath}${config.apf.filterProcessesUrl}' method='POST' id='loginForm' autocomplete='off'
@@ -83,6 +92,26 @@
     </g:if>
     <g:layoutBody/>
 </div>
+
+<div class="modal hide fade in" id="generateQuiz" tabindex="-1" role="dialog" aria-labelledby="generateQuizLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h3 id="generateQuizModalLabel">Generate Quiz</h3>
+    </div>
+
+    <g:form class="form-horizontal tip_form" controller="quiz" action="generateQuiz">
+        <div class="modal-body">
+            <af:categories/>
+        </div>
+
+        <div class="modal-footer">
+            <g:submitButton name="generate" class="btn btn-info" value="${message(code: 'default.button.generate.label', default: 'Generate')}"/>
+            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </g:form>
+</div>
+
 
 <footer>
     <div class="navbar">

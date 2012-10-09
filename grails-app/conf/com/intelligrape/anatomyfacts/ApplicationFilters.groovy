@@ -14,6 +14,5 @@ class ApplicationFilters {
                 session['_grails_console_last_code_'] = session['_grails_console_last_code_'] ?: importStatements
             }
         }
-
     }
 }
