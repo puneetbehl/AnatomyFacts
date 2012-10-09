@@ -1,3 +1,4 @@
+<%@ page import="org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -35,18 +36,39 @@
             <a class="brand" href="/">${appName}</a>
 
             <div class="nav-collapse collapse">
+                <sec:ifLoggedIn><p class="navbar-text pull-right">
+                    Logged in as <a href="#" class="navbar-link"><sec:loggedInUserInfo field="username"/></a>
+                </p></sec:ifLoggedIn>
                 <ul class="nav">
                     <li><g:link controller="category" action="list">Category</g:link></li>
                     <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
                     <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
                     <li><g:link controller="tip" action="list">Tip</g:link></li>
                 </ul>
-            </div><!--/.nav-collapse -->
+                <sec:ifNotLoggedIn>
+                    <g:set var="config" value="${SpringSecurityUtils.securityConfig}"/>
+                    <form action='${request.contextPath}${config.apf.filterProcessesUrl}' method='POST' id='loginForm' autocomplete='off'
+                          class="form-inline navbar-form pull-right cssForm">
+                        <div class="input-prepend">
+                            <span class="add-on">@</span>
+                            <input type='text' class='text_ span2 input-small' name='j_username' id='username' placeholder="Username"/>
+                        </div>
+                        <input type='password' class='text_ input-small' name='j_password' id='password' placeholder="Password"/>
+                        <button type="submit" class="btn btn-inverse">Sign in</button>
+                    </form>
+                </sec:ifNotLoggedIn>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container-fluid">
+    <g:if test="${flash.message}">
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            ${flash.message}
+        </div>
+    </g:if>
     <g:if test="${flash.error}">
         <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">×</button>
