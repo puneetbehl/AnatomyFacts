@@ -59,8 +59,7 @@ class TipController {
         if (params?.fromContext)
             flash.success="Tip successfully added"
         String controller = params?.fromContext ? "category" : "tip"
-        String action = params?.fromContext ? "show" : "create"
-        redirect(action: action, controller: controller, id: "${params?.fromContext ? params?.category.id : ''}")
+        redirect(action: 'create', controller: controller, id: "${params?.fromContext ? params?.category.id : ''}")
     }
 
     def show(Long id) {
