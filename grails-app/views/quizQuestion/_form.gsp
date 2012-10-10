@@ -58,10 +58,9 @@
             <g:textArea class="input-xxlarge" cols="15" rows="7" name="description" value="${quizQuestion?.description}" placeholder="Describe your answer..."/>
         </td>
     </tr>
-    ${fromContext}
     <g:if test="${fromContext}">
         <g:hiddenField name="fromContext" value="${fromContext}"/>
-        <g:hiddenField name="category.id" value="${category?.id}"/>
+        <g:hiddenField name="category.id" value="${categoryID}"/>
     </g:if>
     <g:else>
         <tr>

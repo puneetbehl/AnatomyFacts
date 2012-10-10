@@ -53,8 +53,8 @@
 
     <div class="modal-body">
         <g:link class="btn btn-large btn-block btn-primary" controller="quizQuestion" action="create"
-                params='{"fromContext":"category", "category.id":"${category?.id}"}'>Quiz Question</g:link>
-        <g:link class="btn btn-large btn-block btn-primary" controller="testQuestion" action="create" params="{fromContext:'category'}">Test Question</g:link>
+                params='["fromContext": "category", "categoryID": "${category?.id}"]'>Quiz Question</g:link>
+<g:link class="btn btn-large btn-block btn-primary" controller="testQuestion" action="create" params='["fromContext":"category", "categoryID":"${category?.id}"]'>Test Question</g:link>
     </div>
 
     <div class="modal-footer">

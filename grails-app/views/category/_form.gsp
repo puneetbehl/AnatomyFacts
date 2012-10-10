@@ -24,8 +24,8 @@
                     <li><g:link controller="question" action="show" id="${q.id}">${q?.encodeAsHTML()}</g:link></li>
                 </g:each>
                 <li class="add">
-                </i><a href="#addQuestionModal" data-toggle="modal"><i
-                        class="icon-plus-sign"></i>&nbsp;${message(code: 'default.add.label', args: [message(code: 'question.label', default: 'Question')])}</a>
+                    <a href="#addQuestionModal" data-toggle="modal"><i
+                            class="icon-plus-sign"></i>&nbsp;${message(code: 'default.add.label', args: [message(code: 'question.label', default: 'Question')])}</a>
                 </li>
             </ul>
         </td>

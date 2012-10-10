@@ -23,7 +23,7 @@ class QuizQuestionController {
         } else {
             [quizQuestion: quizQuestion]
         }
-        render view: "/quizQuestion/create", model: ['category.id': params?.category?.id, 'fromContext': params?.fromContext, quizQuestion: quizQuestion]
+        render view: "/quizQuestion/create", model: ['categoryID': params?.categoryID, 'fromContext': params?.fromContext, quizQuestion: quizQuestion]
     }
 
     def save(Long id, Long version) {
@@ -59,9 +59,7 @@ class QuizQuestionController {
         if (params?.fromContext) {
             flash.success = "Question added successfully"
         }
-        String action = params?.fromContext ? "show" : "create"
-        String controller = params?.fromContext ? "category" : "quizQuestion"
-        redirect(controller: controller, action: action)
+        redirect(controller: params?.fromContext ? "category" : "quizQuestion", action: 'create', id: "${params?.fromContext ? params?.category?.id : ''}")
     }
 
     def show(Long id) {
