@@ -9,6 +9,10 @@ class QuizQuestion extends Question {
         tags(bindable: false)
     }
 
+    static mapping = {
+        sort(id: 'desc')
+    }
+
     @Override
     String toString() {
         return super.toString()

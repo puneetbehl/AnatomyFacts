@@ -11,6 +11,10 @@ class Category {
         name(nullable: false, blank: false)
     }
 
+    static mapping = {
+        sort(id: 'desc')
+    }
+
     @Override
     public String toString() {
         return name
