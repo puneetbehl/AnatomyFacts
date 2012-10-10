@@ -100,3 +100,4 @@ grails.plugins.springsecurity.authority.className = 'com.intelligrape.anatomyfac
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistent = true
 grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.intelligrape.anatomyfacts.PersistentLogin'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = '/'
