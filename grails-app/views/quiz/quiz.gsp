@@ -7,9 +7,7 @@
 
 <body>
 <g:form controller="quiz" url="#">
-    <table class="table table-bordered table-striped table-hover">
-            <g:render template="quizTemplate" model='[questions: questions]'/>
-    </table>
+    <g:render template="quizTemplate" model='[questions: questions]'/>
 </g:form>
 </body>
 </html>

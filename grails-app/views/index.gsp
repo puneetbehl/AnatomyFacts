@@ -28,7 +28,7 @@
         </div>
 
         <div class="row">
-            <g:render template="/login/registerationForm"/>
+            <g:render template="/login/registrationForm"/>
         </div>
     </div>
     <g:render template="/login/forgotPasswordModal"/>
