@@ -8,6 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    %{--<meta name="viewport" content="width=device-width, initial-scale=1.0">--}%
     <g:set var="appName" value="${grails.util.GrailsNameUtils.getNaturalName(g.meta(name: 'app.name'))}" scope="page"/>
     <title>${appName} | <g:layoutTitle/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.css')}"/>
 
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-1.8.0.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'bootstrap.js')}"></script>
@@ -22,6 +24,8 @@
     <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery-ui.js')}"></script>
     <script type="text/javascript" src="${resource(dir: 'js', file: 'application.js')}"></script>
     <g:layoutHead/>
+
+
 </head>
 
 <body>
@@ -35,15 +39,15 @@
             </a>
             <a class="brand" href="/">${appName}</a>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li><g:link controller="category" action="list">Category</g:link></li>
-                    <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
-                    <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
-                    <li><a href="#generateQuiz" data-toggle="modal">Quiz</a></li>
-                    <li><g:link controller="tip" action="list">Tip</g:link></li>
-                </ul>
-                <sec:ifLoggedIn>
+            <sec:ifLoggedIn>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><g:link controller="category" action="list">Category</g:link></li>
+                        <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
+                        <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
+                        <li><a href="#generateQuiz" data-toggle="modal">Quiz</a></li>
+                        <li><g:link controller="tip" action="list">Tip</g:link></li>
+                    </ul>
                     <ul class="pull-right nav">
                         <li>
                             <p class="navbar-text pull-right" id="loginMessgae">
@@ -53,20 +57,8 @@
                         <li class="divider-vertical"></li>
                         <li><g:link controller="logout">Logout</g:link></li>
                     </ul>
-                </sec:ifLoggedIn>
-                <sec:ifNotLoggedIn>
-                    <g:set var="config" value="${SpringSecurityUtils.securityConfig}"/>
-                    <form action='${request.contextPath}${config.apf.filterProcessesUrl}' method='POST' id='loginForm' autocomplete='off'
-                          class="form-inline navbar-form pull-right cssForm">
-                        <div class="input-prepend">
-                            <span class="add-on">@</span>
-                            <input type='text' class='text_ span2 input-small' name='j_username' id='username' placeholder="Username"/>
-                        </div>
-                        <input type='password' class='text_ input-small' name='j_password' id='password' placeholder="Password"/>
-                        <button type="submit" class="btn btn-inverse">Sign in</button>
-                    </form>
-                </sec:ifNotLoggedIn>
-            </div>
+                </div>
+            </sec:ifLoggedIn>
         </div>
     </div>
 </div>
@@ -92,25 +84,9 @@
     </g:if>
     <g:layoutBody/>
 </div>
-
-<div class="modal hide fade in" id="generateQuiz" tabindex="-1" role="dialog" aria-labelledby="generateQuizLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-        <h3 id="generateQuizModalLabel">Generate Quiz</h3>
-    </div>
-
-    <g:form class="form-horizontal tip_form" controller="quiz" action="generateQuiz">
-        <div class="modal-body">
-            <af:categories/>
-        </div>
-
-        <div class="modal-footer">
-            <g:submitButton name="generate" class="btn btn-info" value="${message(code: 'default.button.generate.label', default: 'Generate')}"/>
-            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-        </div>
-    </g:form>
-</div>
+<sec:ifLoggedIn>
+   <g:render template="/category/categoriesMultiSelect"/>
+</sec:ifLoggedIn>
 
 
 <footer>

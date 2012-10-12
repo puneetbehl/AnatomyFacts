@@ -69,7 +69,7 @@
         <h3 id="addTipModalLabel">Enter Tip Content</h3>
     </div>
 
-    <g:form class="form-horizontal tip_form" controller="tip" action="save">
+    <g:form class="tip_form" controller="tip" action="save">
         <div class="modal-body">
             <g:hiddenField name="fromContext" value="category"/>
             <g:hiddenField name="category.id" value="${category?.id}"/>
