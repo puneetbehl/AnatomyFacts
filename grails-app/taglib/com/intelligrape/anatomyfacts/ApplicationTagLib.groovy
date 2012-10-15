@@ -6,6 +6,6 @@ class ApplicationTagLib {
 
     def categories = { attrs, body ->
         List<Category> categories = Category.list()
-        out << render(template: '/quiz/categories', model: [categories: categories])
+        out << render(template: '/category/categoriesMultiSelect', model: [categories: categories])
     }
 }
