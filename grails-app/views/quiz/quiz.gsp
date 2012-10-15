@@ -6,8 +6,8 @@
 </head>
 
 <body>
-<g:form controller="quiz" url="#">
-    <g:render template="quizTemplate" model='[questions: questions]'/>
+<g:form controller="quiz" action="result">
+    <g:render template="form" model='[questions: questions, categoryIds: categoryIds]'/>
 </g:form>
 </body>
 </html>
