@@ -2,7 +2,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-        <h3 id="generateQuizModalLabel">Generate Quiz</h3>
+        <h3 id="generateQuizModalLabel">Select Categories</h3>
     </div>
 
     <g:form class="form-horizontal tip_form" controller="quiz" action="generate">
