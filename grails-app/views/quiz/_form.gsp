@@ -4,7 +4,7 @@
             <tr>
                 <td>
                     <label class="control-label">
-                        <g:hiddenField name="questionAnswers[${index}].question.id" value="${question?.id}"/>
+                        <g:hiddenField name="quizAnswers[${index}].question.id" value="${question?.id}"/>
                         <strong>Question ${index + 1}:&nbsp;</strong>${question?.content}
                     </label>
                 </td>
@@ -13,7 +13,7 @@
                 <tr>
                     <td>
                         <label class="radio">
-                            <g:radio name="questionAnswers[${index}].answer.id" value="${option?.id}"/>
+                            <g:radio name="quizAnswers[${index}].answer.id" value="${option?.id}"/>
                             ${option?.value}
                         </label>
                     </td>
