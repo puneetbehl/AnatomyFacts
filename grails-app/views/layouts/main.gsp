@@ -25,7 +25,6 @@
     <script type="text/javascript" src="${resource(dir: 'js', file: 'application.js')}"></script>
     <g:layoutHead/>
 
-
 </head>
 
 <body>
@@ -46,6 +45,7 @@
                         <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
                         <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
                         <li><a href="#generateQuiz" data-toggle="modal">Quiz</a></li>
+                        <li><a href="#generateTest" data-toggle="modal">Test Your Knowledge</a></li>
                         <li><g:link controller="tip" action="list">Tip</g:link></li>
                     </ul>
                     <ul class="pull-right nav">
@@ -85,7 +85,8 @@
     <g:layoutBody/>
 </div>
 <sec:ifLoggedIn>
-   <g:render template="/category/categoriesMultiSelect"/>
+    <g:render template="/quiz/generateQuiz"/>
+    <g:render template="/test/generateTest"/>
 </sec:ifLoggedIn>
 
 
