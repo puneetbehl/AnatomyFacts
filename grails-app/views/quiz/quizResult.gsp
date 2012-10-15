@@ -7,7 +7,7 @@
 
 <body>
 <table class="table table-bordered table-striped table-hover">
-    <g:render template="result"
+    <g:render template="result" model="[quizAnswers: quiz?.quizAnswers, totalScore: totalScore]"/>
 </table>
 </body>
 </html>

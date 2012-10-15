@@ -1,18 +1,59 @@
-<div class="modal hide fade in" id="generateQuiz" tabindex="-1" role="dialog" aria-labelledby="generateQuizLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-        <h3 id="generateQuizModalLabel">Generate Quiz</h3>
-    </div>
-
-    <g:form class="form-horizontal tip_form" controller="quiz" action="generateQuiz">
-        <div class="modal-body">
-            <af:categories/>
-        </div>
-
-        <div class="modal-footer">
-            <g:submitButton name="generate" class="btn btn-info" value="${message(code: 'default.button.generate.label', default: 'Generate')}"/>
-            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-        </div>
-    </g:form>
+<div style="display: none">
+    <g:select name="categories" from="${categories}" optionKey="id" optionValue="name" multiple="true"/>
 </div>
+<ul id="sourceCategories" class="droptrue">
+    <g:each in="${categories}" var="category">
+        <li class="ui-state-default" id="${category?.id}">
+            ${category?.name}
+        </li>
+    </g:each>
+</ul>
+<ul id="selectedCategories" class="droptrue">
+
+</ul>
+<br style="clear: both;"/>
+
+<style>
+#sourceCategories, #selectedCategories {
+    list-style-type: none;
+    margin-left: 5px;
+    padding: 0;
+    float: left;
+    margin-right: 20px;
+    background: #eee;
+    padding: 5px;
+    width: 220px;
+    cursor: pointer
+}
+
+#sourceCategories li, #selectedCategories li {
+    margin: 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 200px;
+}
+</style>
+<script>
+    $(function () {
+        $("ul.droptrue").sortable({
+            connectWith:"ul",
+            stop:function () {
+                $('#sourceCategories li').each(function () {
+                    $(this).attr('class','ui-state-default');
+                    var id = $(this).attr('id');
+                    $("select[name=categories] option[value=" + id + "]").removeAttr('selected')
+                })
+
+                $('#selectedCategories li').each(function () {
+                    $(this).attr('class','ui-state-highlight');
+                    var id = $(this).attr('id');
+                    $("select[name=categories] option[value=" + id + "]").attr('selected', 'true')
+                })
+
+            }
+        });
+        $("#sourceCategories, #selectedCategories").disableSelection();
+    });
+</script>
+
+
