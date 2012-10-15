@@ -6,8 +6,14 @@
 </head>
 
 <body>
-<div class="hero-unit">
-    Welcome to dashboard
+<div class="row-fluid">
+    <div class="span3">
+        <g:render template="/quiz/list"/>
+    </div>
+
+    <div class="span3">
+        <g:render template="/test/list"/>
+    </div>
 </div>
 </body>
 </html>
