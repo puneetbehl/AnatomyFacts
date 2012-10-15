@@ -10,3 +10,9 @@ body {
 footer .navbar {
     padding: 0px 20px;
 }
+.active {
+
+}
+.hideButton  {
+    display: none;
+}
