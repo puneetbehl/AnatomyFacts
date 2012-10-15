@@ -13,6 +13,18 @@ class QuizQuestion extends Question {
         sort(id: 'desc')
     }
 
+    public static Collection<Long> getAllQuestionIdsFromDb(List<Category> categories) {
+        Collection<Long> questionIds = (QuizQuestion.createCriteria().list {
+            projections {
+                property("id")
+            }
+            if (categories) {
+                inList('category', categories)
+            }
+        })
+        questionIds
+    }
+
     @Override
     String toString() {
         return super.toString()
