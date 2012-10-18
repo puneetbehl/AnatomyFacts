@@ -3,6 +3,7 @@ package com.intelligrape.anatomyfacts
 class Test {
     List<TestAnswer> testAnswers
     List<Category> categories
+    Integer score
     Date dateCreated
     Date lastUpdated
 
