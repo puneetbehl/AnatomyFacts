@@ -41,12 +41,14 @@
             <sec:ifLoggedIn>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><g:link controller="category" action="list">Category</g:link></li>
-                        <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
-                        <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
+                        <sec:ifAnyGranted roles="admin">
+                            <li><g:link controller="category" action="list">Category</g:link></li>
+                            <li><g:link controller="quizQuestion" action="list">Quiz Question</g:link></li>
+                            <li><g:link controller="testQuestion" action="list">Test Question</g:link></li>
+                            <li><g:link controller="tip" action="list">Tip</g:link></li>
+                        </sec:ifAnyGranted>
                         <li><a href="#generateQuiz" data-toggle="modal">Quiz</a></li>
                         <li><a href="#generateTest" data-toggle="modal">Test Your Knowledge</a></li>
-                        <li><g:link controller="tip" action="list">Tip</g:link></li>
                     </ul>
                     <ul class="pull-right nav">
                         <li>
