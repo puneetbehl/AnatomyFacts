@@ -8,7 +8,7 @@ class TestController {
 
     def springSecurityService
 
-    static allowedMethods = [save: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -66,14 +66,14 @@ class TestController {
         def test = Test.get(id)
         if (!test) {
             flash.error = message(code: 'default.not.found.message', args: [message(code: 'test.label', default: 'Test'), id])
-            redirect(action: "list")
+            redirect(controller: 'login', action: "dashboard")
             return
         }
 
         try {
             test.delete(flush: true)
             flash.success = message(code: 'default.deleted.message', args: [message(code: 'test.label', default: 'Test'), id])
-            redirect(action: "list")
+            redirect(controller: 'login', action: "dashboard")
         }
         catch (DataIntegrityViolationException e) {
             flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'test.label', default: 'Test'), id])
@@ -95,11 +95,12 @@ class TestController {
     def result() {
         Test test = new Test(params)
         test.contestant = (User) springSecurityService.currentUser
-        test.save failOnError: true
         Integer totalScore = 0
         test?.testAnswers?.each { qa ->
             totalScore += (qa?.answer == qa?.question?.answer ? 1 : 0)
         }
+        test.score = totalScore
+        test.save failOnError: true
         render view: '/test/testResult', model: [test: test, totalScore: totalScore]
     }
 }
