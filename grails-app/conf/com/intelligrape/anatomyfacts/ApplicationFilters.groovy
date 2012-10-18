@@ -24,13 +24,5 @@ class ApplicationFilters {
                 }
             }
         }
-        notLoggedIn(uri: '/', action: 'register',invert: true) {
-            before = {
-//                if (!springSecurityService.isLoggedIn()) {
-//                    redirect(uri: "/")
-//                    return
-//                }
-            }
-        }
     }
 }
