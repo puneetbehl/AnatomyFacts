@@ -5,6 +5,7 @@ class Quiz {
     List<Category> categories
     Date dateCreated
     Date lastUpdated
+    Integer score
 
     static belongsTo = [contestant: User]
 
