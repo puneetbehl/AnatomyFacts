@@ -5,19 +5,24 @@
 </div>
 <table class="table table-bordered table-striped table-hover">
     <thead>
-    <tr>
-        <g:sortableColumn property="dateCreated" title="Date"/>
-    </tr>
+    <th></th>
+    <g:sortableColumn property="dateCreated" title="Date"/>
+    <th>Score</th>
     </thead>
     <tbody>
     <g:each in="${quizList}" status="i" var="quiz">
         <g:form>
             <g:hiddenField name="id" value="${quiz?.id}"/>
             <tr>
+                <td><a class="pull-right" href="${createLink(controller: 'quiz', action: 'delete', id: quiz?.id)}"
+                       onclick="return confirm('Are you sure?');"><i class="icon-trash"></i></a></td>
                 <td>
-                    <g:link action="show" id="${quiz?.id}"><g:formatDate date="${quiz?.dateCreated}"/></g:link>
-                    <a class="pull-right" href="${createLink(controller: 'quiz', action: 'delete', id: quiz?.id)}"
-                       onclick="return confirm('Are you sure?');"><i class="icon-trash"></i></a>
+                    <g:link action="show" id="${quiz?.id}">
+                        <g:formatDate date="${quiz?.dateCreated}"/>
+                    </g:link>
+                </td>
+                <td>
+                    ${quiz?.score}
                 </td>
             </tr>
         </g:form>
