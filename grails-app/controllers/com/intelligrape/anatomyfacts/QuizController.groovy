@@ -8,7 +8,7 @@ class QuizController {
 
     def springSecurityService
 
-    static allowedMethods = [save: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -28,11 +28,12 @@ class QuizController {
     def result() {
         Quiz quiz = new Quiz(params)
         quiz.contestant = (User) springSecurityService.currentUser
-        quiz.save failOnError: true
         Integer totalScore = 0
         quiz?.quizAnswers?.each { qa ->
             totalScore += qa?.answer?.isCorrect ? 1 : 0
         }
+        quiz.score = totalScore
+        quiz.save failOnError: true
         render view: '/quiz/quizResult', model: [quiz: quiz, totalScore: totalScore]
     }
 
@@ -80,14 +81,14 @@ class QuizController {
         def quiz = Quiz.get(id)
         if (!quiz) {
             flash.error = message(code: 'default.not.found.message', args: [message(code: 'quiz.label', default: 'Quiz'), id])
-            redirect(action: "list")
+            redirect(controller: 'login', action: "dashboard")
             return
         }
 
         try {
             quiz.delete(flush: true)
             flash.success = message(code: 'default.deleted.message', args: [message(code: 'quiz.label', default: 'Quiz'), id])
-            redirect(action: "list")
+            redirect(controller: 'login', action: "dashboard")
         }
         catch (DataIntegrityViolationException e) {
             flash.error = message(code: 'default.not.deleted.message', args: [message(code: 'quiz.label', default: 'Quiz'), id])
